@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    max-width: max-content;
+    max-height: max-content;
+    background-color: rgb(235, 192, 255);
+    overflow: hidden;
+}
+canvas {
+    width: 500px;
+    height: 500px;
+    background-color: rgb(218, 218, 218);
+    margin: 25% 100%;
+    border: solid 5px;
+    border-color: black;
+}
+
+#score {
+    width: 500px;
+    height: 50px;
+    font-size: 42px;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 20px;
+}
