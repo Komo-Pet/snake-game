@@ -18,13 +18,9 @@
     function createGrid (){
         for (i = 0; i < cfg.sideTiles; i++) {
             for (j = 0; j < cfg.sideTiles; j++){
-                ctx.fillStyle = 'red';
                 let gridX = width / cfg.sideTiles * i + cfg.offset;
                 let gridY = height / cfg.sideTiles * j + cfg.offset;
                 coordinates.push({gridX, gridY})
-                ctx.beginPath();
-                ctx.arc(gridX, gridY, 1, 0, Math.PI *2);
-                ctx.fill();
             }
         }
     }
@@ -137,25 +133,25 @@
     init();
 
     document.addEventListener(`keydown`, e => {
-        if (e.code == "KeyA") {
+        if (e.code == "KeyA" && snake[0].x !== snake[1].x + 10) {
             RIGHT = false;
             LEFT = true;
             UP = false;
             DOWN = false;
             //snake.update();
-        } else if (e.code == "KeyS") {
+        } else if (e.code == "KeyS" && snake[0].y !== snake[1].y - 10) {
             RIGHT = false;
             LEFT = false;
             UP = false;
             DOWN = true;
             //snake.update();
-        } else if (e.code == "KeyW") {
+        } else if (e.code == "KeyW" && snake[0].y !== snake[1].y + 10) {
             RIGHT = false;
             LEFT = false;
             UP = true;
             DOWN = false;
             //snake.update();
-        } else if (e.code == "KeyD") {
+        } else if (e.code == "KeyD" && snake[0].x !== snake[1].x - 10) {
             RIGHT = true;
             LEFT = false;
             UP = false;
@@ -165,11 +161,27 @@
         
     });
 
+    let stepSize = 60;
+    let step = 0;
     function loop() {
-         setTimeout(() => {
-            requestAnimationFrame(loop);
+        //  setTimeout(() => {
+             let reqId =  requestAnimationFrame(loop);
+            if (stepSize > step) {
+                step++;
+                return;
+            } else {
+                step = 0;
+            }
             ctx.fillStyle = "rgb(218, 218, 218)";
             ctx.fillRect(0, 0, width, height);
+
+            for (let i = 2; i < snake.length - 1; i++){
+                if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+                    cancelAnimationFrame(reqId);
+                    document.getElementById('gameover').style = 'display: inline';
+                    document.getElementById('restart').style = 'display: inline';
+                }
+            }
             
             if (snake[0].x == (apple.x) && snake[0].y == (apple.y)) {
                 apple.eaten();
@@ -186,7 +198,7 @@
             snake[0].update();
             
             
-         }, 500);
+         //}, 500);
     }
     loop();
 

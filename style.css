@@ -9,17 +9,49 @@ canvas {
     width: 500px;
     height: 500px;
     background-color: rgb(218, 218, 218);
-    margin: 25% 100%;
+    position: absolute;
+    left: 30%;
+    right: 50%;
+    top: 100px;
     border: solid 5px;
     border-color: black;
 }
 
 #score {
+    text-align: center;
     width: 500px;
     height: 50px;
     font-size: 42px;
     position: absolute;
-    left: 50%;
+    left: 30%;
     right: 50%;
     top: 20px;
+}
+
+.gameover {
+    text-align: center;
+    width: 500px;
+    height: 50px;
+    font-size: 42px;
+    position: absolute;
+    left: 30%;
+    right: 50%;
+    top: 60px;
+    display: none;
+}
+
+.restart{
+    background-color: rgb(255, 143, 255);
+    display: flex;
+    border-radius: 25px;
+    width: 100px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    left: 50%;
+    z-index: 999;
+    display: none;
 }
